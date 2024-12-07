@@ -1,5 +1,5 @@
 import React from 'react'
-import LeftSideImage from '../../public/assets/Necklace.jpg'
+import LeftSideImage from '../../public/assets/NeckLace.jpg'
 import EarringVideo from '../../public/assets/AboutUsVideo.mp4'
 
 function AboutUs() {

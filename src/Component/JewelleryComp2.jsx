@@ -4,7 +4,7 @@ import Bracelet3 from '../../public/assets/Bracelet3.jpg'
 import JewelleryImage2 from '../../public/assets/JewelleryImage2.jpg'
 import JewelleryImage3 from '../../public/assets/JewelleryImage3.jpg'
 import JewelleryImage4 from '../../public/assets/JewelleryImage4.jpg'
-// import JewelleryVideo from '../../public/assets/JewelleryVideo.mp4'
+import JewelleryVideo from '../../public/assets/JewelleryVideo.mp4'
 import HeroJewelImage from '../../public/assets/HeroJewelImage.png'
 import { motion } from 'framer-motion';
 import { Heart, Sparkle, ArrowUpRight, ArrowRight, Play, Pause } from 'lucide-react';
@@ -65,14 +65,14 @@ function JewelleryComp2() {
 
             <div className="flex flex-col items-center justify-center">
                 <div className="group relative w-[70%]">
-                    {/* <video
+                    <video
                         ref={videoRef}
                         className="w-full"
                         autoPlay
                         loop
                         muted
                         src={JewelleryVideo}
-                    /> */}
+                    />
                     <div className={`absolute  group-hover:flex ${isPlaying ? 'hidden' : "flex"} inset-0 items-center justify-center`}>
                        <div className="border rounded-full p-2 border-[#9fb9e2]">
                        <button

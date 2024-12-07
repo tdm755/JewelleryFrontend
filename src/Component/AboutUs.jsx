@@ -1,6 +1,6 @@
 import React from 'react'
 import LeftSideImage from '../../public/assets/Necklace.jpg'
-// import EarringVideo from '../../public/assets/AboutUsVideo.mp4'
+import EarringVideo from '../../public/assets/AboutUsVideo.mp4'
 
 function AboutUs() {
   return (
@@ -35,14 +35,14 @@ function AboutUs() {
         </div>
         <div className="h-full w-1/2 flex flex-col items-center justify-center relative">
           <div className="absolute top-0 right-0 bottom-0 left-0 bg-[#0000003e]"></div>
-          {/* <video
+          <video
             autoPlay
             loop
             muted
             src={EarringVideo}
             alt="Exquisite Necklace Collection"
             className="h-full w-full object-cover shadow-2xl"
-          /> */}
+          />
         </div>
       </div>
     </div>

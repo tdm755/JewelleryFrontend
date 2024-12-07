@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Sparkle, Filter, SortAsc } from 'lucide-react';
-import Necklace from '../../public/assets/Necklace.jpg';
+import Necklace from '../../public/assets/NeckLace.jpg';
 // Import images 
 import RingsOf from '../../public/assets/Rings.png';
 import RingsOf2 from '../../public/assets/Ring2.png';

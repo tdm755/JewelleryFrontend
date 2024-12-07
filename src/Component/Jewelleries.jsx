@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Sparkle, ArrowUpRight, ArrowRight } from 'lucide-react';
 
-// Import images (ensure these are in your project)
+
 import RingsOf from '../../public/assets/Rings.png';
 import RingsOf2 from '../../public/assets/Ring2.png';
 import NeckLaceCarousel from '../../public/assets/NeckLaceCarousel.png';

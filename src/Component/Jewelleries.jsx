@@ -6,7 +6,7 @@ import { Heart, Sparkle, ArrowUpRight, ArrowRight } from 'lucide-react';
 import RingsOf from '../../public/assets/Rings.png';
 import RingsOf2 from '../../public/assets/Ring2.png';
 import NeckLaceCarousel from '../../public/assets/NeckLaceCarousel.png';
-import Necklace from '../../public/assets/Necklace.jpg';
+import Necklace from '../../public/assets/NeckLace.jpg';
 import JewelryProductCard from './pricingCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css'

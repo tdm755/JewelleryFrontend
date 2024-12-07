@@ -5,7 +5,7 @@ import Necklace from '../../public/assets/NeckLace.jpg';
 // Import images 
 import RingsOf from '../../public/assets/Rings.png';
 import RingsOf2 from '../../public/assets/Ring2.png';
-import NeckLaceCarousel from '../../public/assets/NeckLaceCarousel.png';
+// import NeckLaceCarousel from '../../public/assets/NeckLaceCarousel.png';
 import Ripple from '../Utils/Ripple';
 import JewelryProductCard from '../Component/pricingCard';
 

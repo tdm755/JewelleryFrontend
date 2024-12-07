@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "components/*": ["src/Component/*"],
+      "pages/*": ["src/Pages/*"],
+      "utils/*": ["src/Utils/*"]
+    },
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

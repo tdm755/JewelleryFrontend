@@ -64,7 +64,7 @@ function JewelleryComp2() {
             </div>
 
             <div className="flex flex-col items-center justify-center">
-                <div className="group relative w-[70%]">
+                <div className="group relative lg:w-[70%]">
                     <video
                         ref={videoRef}
                         className="w-full"
@@ -91,28 +91,24 @@ function JewelleryComp2() {
             </div>
            </div>
 
-            <div className=" flex flex-col gap-7">
-                <div className="flex  items-end justify-center gap-7">
-                    <img className='w-24 h-28' src={Bracelet3} alt="" />
-                    <img className='w-48 h-40' src={JewelleryImage2} alt="" />
-                </div>
-                <div className=" flex gap-7 justify-center items-end">
-                    <div className="">
-                        <img className='w-48 h-40' src={JewelleryImage4} alt="" />
-
-                    </div>
-                    <div className="">
-                        <img className='w-80' src={JewelleryImage1} alt="" />
-                    </div>
-                    <div className="flex flex-col gap-7">
-                        <img className='w-14 h-12' src={HeroJewelImage} alt="" />
-                        <img className='w-48' src={JewelleryImage3} alt="" />
-                    </div>
-                </div>
-
-
-
-            </div>
+           <div className="flex flex-col gap-4">
+      <div className="flex items-end justify-center gap-4">
+        <img className='w-16 h-20' src={Bracelet3} alt="Bracelet" />
+        <img className='w-32 h-28' src={JewelleryImage2} alt="Jewellery" />
+      </div>
+      <div className="flex gap-4 justify-center items-end">
+        <div>
+          <img className='w-32 h-28' src={JewelleryImage4} alt="Jewellery" />
+        </div>
+        <div>
+          <img className='w-56' src={JewelleryImage1} alt="Jewellery" />
+        </div>
+        <div className="flex flex-col gap-4">
+          <img className='w-10 h-8' src={HeroJewelImage} alt="Hero Jewel" />
+          <img className='w-32' src={JewelleryImage3} alt="Jewellery" />
+        </div>
+      </div>
+    </div>
 
         </div>
     )

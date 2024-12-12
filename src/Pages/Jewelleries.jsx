@@ -63,25 +63,27 @@ const JewellerySection = () => {
   return (
     <>
       <div className="absolute h-[500px]  -top-20  w-full flex items-center justify-center">
-        <Ripple />
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-            Discover Exquisite Jewelry • Timeless Elegance Awaits •
+        <div className="absolute flex h-[700px] left-0 right-0 top-0 w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl">
+          <Ripple />
+        </div>
+        <div className="flex mt-32 flex-col items-center justify-center">
+          <h1 className="text-2xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+            Discover <br /> Exquisite Jewelry • Timeless Elegance Awaits •
           </h1>
-          <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-4 flex items-center justify-center">
-            <Sparkle className="mr-3 text-blue-500" />
+          <h2 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-4 flex items-center justify-center">
+            {/* <Sparkle className="mr-3 text-blue-500" /> */}
             Explore Our Curated Collection
-            <Sparkle className="ml-3 text-blue-500" />
+            {/* <Sparkle className="ml-3 text-blue-500" /> */}
           </h2>
           <p className="text-gray-600">Handcrafted Pieces That Tell a Story</p>
         </div>
       </div>
 
-      <div className="relative overflow-hidden py-16  mt-[300px]">
+      <div className="relative overflow-hidden  mt-[350px]">
 
         {/* Filtering and Sorting Controls */}
-        <div className="max-w-7xl mx-auto px-8 mb-8 flex justify-between items-center">
-          <div className="flex space-x-2">
+        <div className="max-w-7xl mx-auto px-8 flex flex-col xl:flex-row py-20 gap-10 justify-between items-center">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 space-x-2">
             {filterCategories.map((category) => (
               <motion.button
                 key={category}
@@ -109,17 +111,17 @@ const JewellerySection = () => {
         </div>
 
         {/* Jewelry Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 max-w-7xl mx-auto  mt-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-2 lg:px-8 max-w-7xl mx-auto lg:mt-32">
           {filteredJewels.map((jewel) => (
-           <JewelryProductCard
-           imageUrl={Necklace}
-           gemColor="#d4af37"
-           title="Golden Lotus Pendant"
-           description=""
-           price={50000}
-           inStock={false}
-           onReserve={() => console.log('Reserving piece')}
-         />
+            <JewelryProductCard
+              imageUrl={Necklace}
+              gemColor="#d4af37"
+              title="Golden Lotus Pendant"
+              description=""
+              price={50000}
+              inStock={false}
+              onReserve={() => console.log('Reserving piece')}
+            />
           ))}
         </div>
 

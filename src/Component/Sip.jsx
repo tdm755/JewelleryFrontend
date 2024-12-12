@@ -72,86 +72,87 @@ const SipCalculator = () => {
 
     return (
         <div className="p-4 mt-32 ">
-            <div className="flex flex-col items-center justify-center pb-20">
-                <h2 className='text-[#9fb8e2] text-7xl fontStyle'>Jewelry <span className='font-serif'>SIP</span> Investment Calculator</h2>
-                {/* <p className=" leading-relaxed text-center px-72 text-sm text-white/80">
-                    Jewelboc is a cutting-edge digital platform for managing and showcasing jewelry collections. It offers intuitive inventory tracking, high-resolution image storage, and robust security features for collectors and enthusiasts.
-                </p> */}
+            <div className="flex flex-col items-center justify-center lg:pb-20">
+                <h2 className='text-[#9fb8e2] text-2xl md:text-4xl lg:text-7xl fontStyle'>Jewelry <span className='font-serif'>SIP</span> Investment Calculator</h2>
             </div>
-            <div className=" shadow-3xl p-7 mx-10 rounded-xl overflow-hidden" >
+            <div className=" shadow-3xl  lg:mx-10 rounded-xl overflow-hidden" >
 
-                <div className="p-6 py-16 flex  gap-10">
+                <div className={`py-16 flex flex-col lg:flex-row  ${calculationResult ? 'gap-10' : 'gap-0'}`}>
                     {/* Left Column: Input Section */}
-                    <div className={`flex flex-col gap-2 transition-all duration-500 ease-in-out ${calculationResult ? 'w-1/3' : 'w-full'}`}>
-                        <div className="mb-4">
-                            <label className="block text-[#9fb9e2] font-medium mb-2">Select SIP Plan</label>
-                            <select
-                                className="w-full px-3 py-4 rounded-lg  bg-white/10 backdrop-blur-sm text-white  focus:outline-none  outline-none  [&>option]:bg-gray-700 [&>option]:text-white [&>option:hover]:bg-gray-600 "
-                                value={selectedPlan.id}
-                                onChange={(e) =>
-                                    setSelectedPlan(fixedInterestRates.find(plan => plan.id === parseInt(e.target.value)))
-                                }
+                    <div className={`flex flex-col gap-2 transition-all duration-500 ease-in-out ${calculationResult ? 'w-full lg:w-1/3' : 'w-full'}`}>
+                        <div className={`grid grid-cols-1 ${calculationResult ? 'grid-cols-1' : 'md:grid-cols-3'}  gap-4 items-center `}>
+                            <div className="mb-4">
+                                <label className="block text-[#9fb9e2] font-medium mb-2">Select SIP Plan</label>
+                                <select
+                                    className="w-full px-3 py-4 rounded-full  bg-white/10 backdrop-blur-sm text-white  focus:outline-none  outline-none  [&>option]:bg-gray-700 [&>option]:text-white [&>option:hover]:bg-gray-600 "
+                                    value={selectedPlan.id}
+                                    onChange={(e) =>
+                                        setSelectedPlan(fixedInterestRates.find(plan => plan.id === parseInt(e.target.value)))
+                                    }
+                                >
+                                    {fixedInterestRates.map((plan) => (
+                                        <option key={plan.id} value={plan.id}>
+                                            {plan.name} ({plan.rate}% p.a.)
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-[#9fb9e2] font- mb-2">Monthly Investment Amount</label>
+                                <input
+                                    type="number"
+                                    className="w-full px-3 py-4 rounded-full  bg-white/10 backdrop-blur-sm text-white  focus:outline-none  outline-none  [&>option]:bg-gray-700 [&>option]:text-white [&>option:hover]:bg-gray-600 "
+                                    placeholder={`Minimum ₹${selectedPlan.minInvestment}`}
+                                    value={monthlyInvestment}
+                                    onChange={(e) => setMonthlyInvestment(e.target.value)}
+                                    min={selectedPlan.minInvestment}
+                                />
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-[#9fb9e2] font-medium mb-2">Investment Tenure (Months)</label>
+                                <select
+                                    className="w-full px-3 py-4 rounded-3xl  bg-white/10 backdrop-blur-sm text-white  focus:outline-none  outline-none  [&>option]:bg-gray-700 [&>option]:text-white [&>option:hover]:bg-gray-600 "
+                                    value={selectedTenure}
+                                    onChange={(e) => setSelectedTenure(e.target.value)}
+                                >
+                                    <option value="">Select Tenure</option>
+                                    {selectedPlan.tenure.map((months) => (
+                                        <option key={months} value={months}>
+                                            {months} Months
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center justify-center">
+                            <button
+                                onClick={calculateSipReturns}
+                                className=" bg-white/10 backdrop-blur-sm px-10 text-white py-4 cursor-pointer  hover:bg-white hover:text-primary-default transition duration-300 ease-in-out rounded-full"
+                                disabled={!monthlyInvestment || !selectedTenure}
                             >
-                                {fixedInterestRates.map((plan) => (
-                                    <option key={plan.id} value={plan.id}>
-                                        {plan.name} ({plan.rate}% p.a.)
-                                    </option>
-                                ))}
-                            </select>
+                                Calculate Returns
+                            </button>
                         </div>
-
-                        <div className="mb-4">
-                            <label className="block text-[#9fb9e2] font-medium mb-2">Monthly Investment Amount</label>
-                            <input
-                                type="number"
-                                className="w-full px-3 py-4 rounded-lg  bg-white/10 backdrop-blur-sm text-white  focus:outline-none  outline-none  [&>option]:bg-gray-700 [&>option]:text-white [&>option:hover]:bg-gray-600 "
-                                placeholder={`Minimum ₹${selectedPlan.minInvestment}`}
-                                value={monthlyInvestment}
-                                onChange={(e) => setMonthlyInvestment(e.target.value)}
-                                min={selectedPlan.minInvestment}
-                            />
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="block text-[#9fb9e2] font-medium mb-2">Investment Tenure (Months)</label>
-                            <select
-                                className="w-full px-3 py-4 rounded-lg  bg-white/10 backdrop-blur-sm text-white  focus:outline-none  outline-none  [&>option]:bg-gray-700 [&>option]:text-white [&>option:hover]:bg-gray-600 "
-                                value={selectedTenure}
-                                onChange={(e) => setSelectedTenure(e.target.value)}
-                            >
-                                <option value="">Select Tenure</option>
-                                {selectedPlan.tenure.map((months) => (
-                                    <option key={months} value={months}>
-                                        {months} Months
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <button
-                            onClick={calculateSipReturns}
-                            className="w-full bg-white/10 backdrop-blur-sm text-white py-2  hover:bg-white hover:text-primary-default transition duration-300 ease-in-out"
-                            disabled={!monthlyInvestment || !selectedTenure}
-                        >
-                            Calculate Returns
-                        </button>
                     </div>
 
                     {/* Right Column: Results Section */}
-                    <div className={` transition-all duration-500 ease-in-out ${calculationResult ? 'w-2/3' : 'w-0'}`}>
+                    <div className={` transition-all duration-500 ease-in-out ${calculationResult ? 'w-full lg:w-2/3' : 'w-0'}`}>
                         {calculationResult && (
                             <div>
                                 <h3 className="text- font-semibold mb-2 text-[#9fb9e2]">Investment Projection</h3>
-                                <div className="grid grid-cols-3 gap-4 mb-4">
-                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-full text-center">
                                         <p className="text-xs text-[#9fb9e2]">Total Invested</p>
                                         <p className="font-bold text-white/80">₹{calculationResult.totalInvested}</p>
                                     </div>
-                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center">
+                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-full text-center">
                                         <p className="text-xs text-[#9fb9e2]">Final Value</p>
                                         <p className="font-bold text-white/80">₹{calculationResult.finalValue}</p>
                                     </div>
-                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center">
+                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-full text-center">
                                         <p className="text-xs text-[#9fb9e2]">Total Gain</p>
                                         <p className="font-bold text-green-600">
                                             ₹{calculationResult.totalGain} ({Math.round((calculationResult.totalGain / calculationResult.totalInvested) * 100)}%)
@@ -220,20 +221,20 @@ const SipCalculator = () => {
             </div>
 
             {/* Additional SIP Features Section */}
-            <div className=" shadow-lg rounded-lg overflow-hidden mt-40">
+            <div className=" shadow-lg overflow-hidden mt-10 md:mt-20 lg:mt-40">
                 <div className="px-6 py-4 flex items-center justify-center">
                     <h2 className="text-2xl font-bold text-[#9fb9e2]">SIP Investment Features</h2>
                 </div>
-                <div className="p-6 grid md:grid-cols-3 gap-4">
-                    <div className="bg-white/10 backdrop-blur-sm p-4 ">
+                <div className="py-6 lg:p-6 grid md:grid-cols-3 gap-4">
+                    <div className="bg-white/10 backdrop-blur-sm px-4 py-7 rounded-3xl">
                         <h4 className="font-bold mb-2 text-[#9fb9e2]">Flexible Plans</h4>
                         <p className="text-white/80">Choose from Gold, Silver, and Diamond SIP plans tailored for jewelry investments.</p>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm p-4 ">
+                    <div className="bg-white/10 backdrop-blur-sm px-4 py-7 rounded-3xl">
                         <h4 className="font-bold mb-2 text-[#9fb9e2]">Low Entry Barrier</h4>
                         <p className="text-white/80">Start investing with as low as ₹500 per month in our Silver SIP plan.</p>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm p-4 ">
+                    <div className="bg-white/10 backdrop-blur-sm px-4 py-7 rounded-3xl">
                         <h4 className="font-bold mb-2 text-[#9fb9e2]">Competitive Returns</h4>
                         <p className="text-white/80">Enjoy attractive interest rates ranging from 7.2% to 9% per annum.</p>
                     </div>

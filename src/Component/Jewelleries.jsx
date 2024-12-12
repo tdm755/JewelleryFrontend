@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Sparkle, ArrowUpRight, ArrowRight } from 'lucide-react';
-
+import ArrowIcon from '../../public/assets/ArrowIcon.svg'
 
 import RingsOf from '../../public/assets/Rings.png';
 import RingsOf2 from '../../public/assets/Ring2.png';
@@ -16,9 +16,7 @@ import 'swiper/css/navigation'
 
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
-
 const JewellerySection = () => {
-  const [isHovered, setIsHovered] = useState(false);
   const [jewels] = useState([
     {
       img: RingsOf,
@@ -86,64 +84,77 @@ const JewellerySection = () => {
   ]);
 
   return (
-    <div className="relative overflow-hidden">
-
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 max-w-7xl mx-auto"> */}
+    <div className="relative overflow-hidden w-full ">
       <Swiper
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
         loop={true}
-
-        // spaceBetween={30}
-        slidesPerView={3}
-        coverflowEffect={
-          {
-            rotate: 0,
-            stretch: 0,
-            depth: 100,
-            modifier: 2.5,
+        breakpoints={{
+          // When window width is >= 320px
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10
+          },
+          // When window width is >= 640px
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          // When window width is >= 1024px
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30
           }
-        }
-        pagination={{ el: '.swiper-pagination', clickable: true }}
-        navigation={
-          {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-            clickable: true,
-          }
-        }
+        }}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
+        pagination={{ 
+          el: '.swiper-pagination', 
+          clickable: true,
+          dynamicBullets: true
+        }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+          clickable: true,
+        }}
         modules={[EffectCoverflow, Navigation, Pagination]}
-        className='swiper_container'
+        className='swiper_container w-full'
       >
         {jewels.map((jewel, index) => (
-          <SwiperSlide className='my-10' key={index}>
+          <SwiperSlide 
+            key={index} 
+            className='flex justify-center items-center my-10 px-2 md:px-4'
+          >
             <JewelryProductCard
               imageUrl={Necklace}
               gemColor="#d4af37"
               title="Golden Lotus Pendant"
               description="Intricate 18k gold pendant"
               price={''}
-
               inStock={false}
               onReserve={() => console.log('Reserving piece')}
             />
           </SwiperSlide>
         ))}
-        <div className="slider-controler">
-          <div className="swiper-button-prev slider-arrow">
-            <ArrowRight name='arrow-back-outline' />
-          </div>
-          <div className="swiper-button-next slider-arrow">
-            <ArrowRight name='arrow-forward-outline' />
+        
+        <div className="slider-controler flex justify-center items-center space-x-4 mt-4">
+          <div className="swiper-button-prev slider-arrow  rounded-full border-white bg-white/10 backdrop-blur-md">
+            {/* <ArrowRight className="w-6 h-6 transform rotate-180" /> */}
+            <img src={ArrowIcon} alt="" />
           </div>
           <div className="swiper-pagination"></div>
+          <div className="swiper-button-next slider-arrow  rounded-full border-white  bg-white/10 backdrop-blur-md">
+           <img className='rotate-180' src={ArrowIcon} alt="" />
+          </div>
         </div>
       </Swiper>
     </div>
-
-
-    // </div>
   );
 };
 

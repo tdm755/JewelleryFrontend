@@ -4,14 +4,15 @@ import EarringVideo from '../../public/assets/AboutUsVideo.mp4'
 
 function AboutUs() {
   return (
-    <div className="flex flex-col gap-24">
-      <div className="flex flex-col items-center justify-center "> 
+    <div className="flex flex-col gap-7 lg:gap-24">
+      <div className="flex flex-col items-center justify-center ">
         <h2 className='text-[#9fb8e2] text-7xl fontStyle'>About Us</h2>
-        <p className=" leading-relaxed text-center px-72 text-sm text-white/80">
+        <p className=" leading-relaxed text-center lg:px-72 text-sm text-white/80">
           Jewelboc is a cutting-edge digital platform for managing and showcasing jewelry collections. It offers intuitive inventory tracking, high-resolution image storage, and robust security features for collectors and enthusiasts.
-        </p></div>
-      <div className="flex justify-center gap-10 h-[600px] mx-32">
-        <div className="h-full w-1/2 flex flex-col justify-center">
+        </p>
+      </div>
+      <div className="flex flex-col md:flex-row justify-center gap-10  lg:mx-32">
+        <div className="h-full lg:w-1/2 flex flex-col justify-center">
           <img
             src={LeftSideImage}
             alt="Elegant Jewelry Craftsmanship"
@@ -33,7 +34,7 @@ function AboutUs() {
             <div className="h-[2px] w-24 mx-auto bg-[#9fb9e2]/50"></div>
           </div>
         </div>
-        <div className="h-full w-1/2 flex flex-col items-center justify-center relative">
+        <div className=" h-[720px] lg:w-1/2 flex flex-col items-center justify-center relative">
           <div className="absolute top-0 right-0 bottom-0 left-0 bg-[#0000003e]"></div>
           <video
             autoPlay

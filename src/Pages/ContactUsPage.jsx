@@ -7,8 +7,6 @@ import AddImage from '../../public/assets/AddImage.svg'
 
 function ContactUsPage() {
 
-
-
     const [Imgs, setImg] = useState([
         {
             id: 1,
@@ -71,16 +69,16 @@ function ContactUsPage() {
 
     return (
         <div className='relative flex items-center justify-center'>
-            <div className="absolute h-[500px]  -top-20  w-full flex items-center justify-center">
+              <div className="absolute flex h-[700px] z-0 left-0 right-0 top-0 w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl">
                 <Ripple />
                 <h1 className='text-[#9FB9E2] text-7xl fontStyle'>Contact Us</h1>
             </div>
-            <div className='flex items-center justify-center w-full mt-[400px]'>
-                <div className="flex flex-col xl:flex-row w-[90%] mt-32 mb-24 bg-white">
-                    <div className="xl:w-[40%] flex items-center justify-center bg-[#e6f3ff]">
+            <div className='flex items-center justify-center w-full mt-[500px] relative z-10'>
+                <div className="flex flex-col xl:flex-row  md:w-[90%] mt-32 mb-24 bg-white">
+                    <div className="xl:w-[40%] h-[500px] md:h-full flex items-center justify-center bg-[#e6f3ff]">
                         <img className='w-full h-full' src={ContactUsImage} alt="" />
                     </div>
-                    <div className="p-12 xl:w-[60%]">
+                    <div className="p-4 md:p-7 lg:p-12 xl:w-[60%]">
                         <div className="">
                             <h1 className='text-2xl'>Get In <span className='font-medium'>Touch</span></h1>
                             <p className='text-sm text-primary-default'>We Will Guide you Whenever you want</p>
@@ -123,7 +121,6 @@ function ContactUsPage() {
                             </div>
 
                             <div className="w-full py-2 flex flex-col md:flex-row items-center px-4 gap-4">
-
                                 <div className="flex flex-wrap gap-4">
                                     {Imgs.map((item, index) => (
                                         <div className="w-32 h-32 hover:scale-105 transition-all duration-300 ease-in-out border rounded-lg flex items-center justify-center relative">
@@ -141,9 +138,7 @@ function ContactUsPage() {
                                 </div>
                                 <div onClick={() => { HandleAddImageClick() }} className="w-25 p-7 hover:scale-105 transition-all duration-300 ease-in-out rounded-full cursor-pointer h-25 border flex items-center justify-center"><img src={AddImage} alt="" /></div>
                             </div>
-
-
-                            <button className='border py-2 bg-white/10 backdrop-blur-sm text-[#9FB9E2]'>Send</button>
+                            <button className='border py-2 bg-white/10 backdrop-blur-sm text-primary-default rounded-full'>Send</button>
                         </form>
                     </div>
                 </div>

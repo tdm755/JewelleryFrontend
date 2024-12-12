@@ -10,6 +10,11 @@ body, html {
 }
 
 
+.scrollbarOf{
+  scrollbar-width: none;
+}
+
+
 .instagram:hover {
   background: #f09433;
   background: -moz-linear-gradient(
@@ -150,9 +155,19 @@ body, html {
   color: #222224;
 } */
 
-/* .slider-controler .slider-arrow::after {
+.swiper-button-next {
+  height: 45px !important; 
+  width: 45px !important;
+}
+
+.swiper-button-prev {
+  height: 45px !important; 
+  width: 45px !important;
+}
+
+.slider-controler .slider-arrow::after {
   content: '';
-} */
+}
 
 .swiper-pagination {
   position: relative;

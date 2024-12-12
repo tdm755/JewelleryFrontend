@@ -85,97 +85,102 @@ const JewelleryEmiCalculator = () => {
 
     return (
         <div className="p-4 mt-32">
-            <div className="flex flex-col items-center justify-center pb-20">
-                <h2 className='text-[#9fb8e2] text-7xl fontStyle'>Jewellery Loan <span className='font-serif'>EMI</span> Calculator</h2>
+            <div className="flex flex-col items-center justify-center lg:pb-20">
+                <h2 className='text-[#9fb8e2] text-2xl md:text-4xl lg:text-7xl fontStyle'>Jewellery Loan <span className='font-serif'>EMI</span> Calculator</h2>
             </div>
-            <div className="shadow-3xl p-7 mx-10 rounded-xl overflow-hidden">
-                <div className="p-6 py-16 flex gap-10">
+            <div className="shadow-3xl lg:mx-10 rounded-xl overflow-hidden">
+                <div className={`py-16 flex flex-col lg:flex-row  ${calculationResult ? 'gap-10' : 'gap-0'}`}>
                     {/* Left Column: Input Section */}
-                    <div className={`flex flex-col gap-2 transition-all duration-500 ease-in-out ${calculationResult ? 'w-1/3' : 'w-full'}`}>
-                        <div className="mb-4">
-                            <label className="block text-[#9fb9e2] font-medium mb-2">Select Jewellery Loan Type</label>
-                            <select
-                                  className="w-full px-3 py-4 rounded-lg  bg-white/10 backdrop-blur-sm text-white  focus:outline-none  outline-none  [&>option]:bg-gray-700 [&>option]:text-white [&>option:hover]:bg-gray-600 "
-                                value={selectedLoanType.id}
-                                onChange={(e) =>
-                                    setSelectedLoanType(loanTypes.find(loan => loan.id === parseInt(e.target.value)))
-                                }
+                    <div className={`flex flex-col gap-2 transition-all duration-500 ease-in-out ${calculationResult ? 'w-full lg:w-1/3' : 'w-full'}`}>
+                        <div className={`grid grid-cols-1 ${calculationResult ? 'grid-cols-1' : 'md:grid-cols-4'}  gap-4 items-center `}>
+                            <div className="mb-4">
+                                <label className="block text-[#9fb9e2] font-medium mb-2">Select Jewellery Loan Type</label>
+                                <select
+                                    className="w-full px-3 py-4 rounded-full  bg-white/10 backdrop-blur-sm text-white  focus:outline-none  outline-none  [&>option]:bg-gray-700 [&>option]:text-white [&>option:hover]:bg-gray-600 "
+                                    value={selectedLoanType.id}
+                                    onChange={(e) =>
+                                        setSelectedLoanType(loanTypes.find(loan => loan.id === parseInt(e.target.value)))
+                                    }
+                                >
+                                    {loanTypes.map((loan) => (
+                                        <option key={loan.id} value={loan.id}>
+                                            {loan.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-[#9fb9e2] font-medium mb-2">Jewellery Loan Amount</label>
+                                <input
+                                    type="number"
+                                    className="w-full px-3 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white focus:outline-none"
+                                    placeholder={`Amount (₹${selectedLoanType.minAmount} - ₹${selectedLoanType.maxAmount})`}
+                                    value={loanAmount}
+                                    onChange={(e) => setLoanAmount(e.target.value)}
+                                    min={selectedLoanType.minAmount}
+                                    max={selectedLoanType.maxAmount}
+                                />
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-[#9fb9e2] font-medium mb-2">Loan Tenure (Months)</label>
+                                <input
+                                    type="number"
+                                    className="w-full px-3 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white focus:outline-none"
+                                    placeholder={`Tenure (${selectedLoanType.minTenure} - ${selectedLoanType.maxTenure} months)`}
+                                    value={loanTenure}
+                                    onChange={(e) => setLoanTenure(e.target.value)}
+                                    min={selectedLoanType.minTenure}
+                                    max={selectedLoanType.maxTenure}
+                                />
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-[#9fb9e2] font-medium mb-2">Interest Rate (%)</label>
+                                <input
+                                    type="number"
+                                    className="w-full px-3 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white focus:outline-none"
+                                    placeholder={`Interest Rate (Base: ${selectedLoanType.baseRate}%)`}
+                                    value={interestRate}
+                                    onChange={(e) => setInterestRate(e.target.value)}
+                                    min="8"
+                                    max="18"
+                                    step="0.1"
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="flex items-center justify-center">
+                            <button
+                                onClick={calculateEmi}
+                                className=" bg-white/10 backdrop-blur-sm px-10 text-white py-4 cursor-pointer  hover:bg-white hover:text-primary-default transition duration-300 ease-in-out rounded-full"
+                                disabled={!loanAmount || !loanTenure || !interestRate}
                             >
-                                {loanTypes.map((loan) => (
-                                    <option key={loan.id} value={loan.id}>
-                                        {loan.name}
-                                    </option>
-                                ))}
-                            </select>
+                                Calculate Jewellery Loan EMI
+                            </button>
                         </div>
-
-                        <div className="mb-4">
-                            <label className="block text-[#9fb9e2] font-medium mb-2">Jewellery Loan Amount</label>
-                            <input
-                                type="number"
-                                className="w-full px-3 py-4 rounded-lg bg-white/10 backdrop-blur-sm text-white focus:outline-none"
-                                placeholder={`Amount (₹${selectedLoanType.minAmount} - ₹${selectedLoanType.maxAmount})`}
-                                value={loanAmount}
-                                onChange={(e) => setLoanAmount(e.target.value)}
-                                min={selectedLoanType.minAmount}
-                                max={selectedLoanType.maxAmount}
-                            />
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="block text-[#9fb9e2] font-medium mb-2">Loan Tenure (Months)</label>
-                            <input
-                                type="number"
-                                className="w-full px-3 py-4 rounded-lg bg-white/10 backdrop-blur-sm text-white focus:outline-none"
-                                placeholder={`Tenure (${selectedLoanType.minTenure} - ${selectedLoanType.maxTenure} months)`}
-                                value={loanTenure}
-                                onChange={(e) => setLoanTenure(e.target.value)}
-                                min={selectedLoanType.minTenure}
-                                max={selectedLoanType.maxTenure}
-                            />
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="block text-[#9fb9e2] font-medium mb-2">Interest Rate (%)</label>
-                            <input
-                                type="number"
-                                className="w-full px-3 py-4 rounded-lg bg-white/10 backdrop-blur-sm text-white focus:outline-none"
-                                placeholder={`Interest Rate (Base: ${selectedLoanType.baseRate}%)`}
-                                value={interestRate}
-                                onChange={(e) => setInterestRate(e.target.value)}
-                                min="8"
-                                max="18"
-                                step="0.1"
-                            />
-                        </div>
-
-                        <button
-                            onClick={calculateEmi}
-                            className="w-full bg-white/10 backdrop-blur-sm text-white py-2 hover:bg-white hover:text-primary-default transition duration-300 ease-in-out"
-                            disabled={!loanAmount || !loanTenure || !interestRate}
-                        >
-                            Calculate Jewellery Loan EMI
-                        </button>
                     </div>
 
                     {/* Right Column: Results Section */}
-                    <div className={` transition-all duration-500 ease-in-out ${calculationResult ? 'w-2/3' : 'w-0'}`}>
+                    <div className={` transition-all duration-500 ease-in-out ${calculationResult ? 'w-full lg:w-2/3' : 'w-0'}`}>
                         {calculationResult && (
                             <div>
                                 <h3 className="text- font-semibold mb-2 text-[#9fb9e2]">Jewellery Loan Breakdown</h3>
                                 <div className="grid grid-cols-3 gap-4 mb-4">
-                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center">
+                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-full text-center">
                                         <p className="text-xs text-[#9fb9e2]">Monthly EMI</p>
                                         <p className="font-bold text-white/80">₹{calculationResult.monthlyEmi.toLocaleString()}</p>
                                     </div>
-                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center">
+                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-full text-center">
                                         <p className="text-xs text-[#9fb9e2]">Total Payment</p>
                                         <p className="font-bold text-white/80">₹{calculationResult.totalPayment.toLocaleString()}</p>
                                     </div>
-                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg text-center">
+                                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-full text-center">
                                         <p className="text-xs text-[#9fb9e2]">Total Interest</p>
                                         <p className="font-bold text-green-600">
-                                            ₹{calculationResult.totalInterest.toLocaleString()} 
+                                            ₹{calculationResult.totalInterest.toLocaleString()}
                                             ({Math.round((calculationResult.totalInterest / (calculationResult.totalPayment - calculationResult.totalInterest) * 100))}%)
                                         </p>
                                     </div>
@@ -238,20 +243,20 @@ const JewelleryEmiCalculator = () => {
             </div>
 
             {/* Jewellery Loan Features Section */}
-            <div className="shadow-lg rounded-lg overflow-hidden mt-40">
+            <div className="shadow-lg overflow-hidden mt-10 md:mt-20 lg:mt-40">
                 <div className="px-6 py-4 flex items-center justify-center">
                     <h2 className="text-2xl font-bold text-[#9fb9e2]">Jewellery Loan Features</h2>
                 </div>
-                <div className="p-6 grid md:grid-cols-3 gap-4">
-                    <div className="bg-white/10 backdrop-blur-sm p-4">
+                <div className="py-6 lg:p-6 grid md:grid-cols-3 gap-4">
+                    <div className="bg-white/10 backdrop-blur-sm p-4 rounded-3xl">
                         <h4 className="font-bold mb-2 text-[#9fb9e2]">Multiple Jewellery Options</h4>
                         <p className="text-white/80">Choose from Gold, Diamond, and Silver jewellery loans with flexible terms.</p>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm p-4">
+                    <div className="bg-white/10 backdrop-blur-sm p-4 rounded-3xl">
                         <h4 className="font-bold mb-2 text-[#9fb9e2]">Transparent Calculations</h4>
                         <p className="text-white/80">Get detailed breakdowns of EMI, principal, and interest payments for your jewellery loan.</p>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm p-4">
+                    <div className="bg-white/10 backdrop-blur-sm p-4 rounded-3xl">
                         <h4 className="font-bold mb-2 text-[#9fb9e2]">Visual Insights</h4>
                         <p className="text-white/80">Interactive charts to help you understand your jewellery loan repayment journey.</p>
                     </div>
